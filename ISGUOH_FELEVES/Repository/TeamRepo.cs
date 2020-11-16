@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Repository
 {
-    class TeamRepo : IRepository<Team>
+    public class TeamRepo : IRepository<Team>
     {
         PlayersDbContext context = new PlayersDbContext();
 
