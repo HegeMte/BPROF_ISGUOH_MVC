@@ -14,6 +14,11 @@ namespace Data
 
         }
 
+        public PlayersDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
