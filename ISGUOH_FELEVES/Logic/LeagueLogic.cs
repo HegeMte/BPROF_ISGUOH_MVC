@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Logic
 {
-    class LeagueLogic
+    public class LeagueLogic
     {
         IRepository<Player> playerrepo;
         IRepository<Team> teamrepo;
