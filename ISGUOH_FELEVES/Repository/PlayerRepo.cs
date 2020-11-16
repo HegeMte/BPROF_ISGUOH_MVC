@@ -56,6 +56,8 @@ namespace Repository
             regiJatekos.Rating = ujJatekos.Rating;
             regiJatekos.WeakFoot = ujJatekos.WeakFoot;
 
+            Save();
+
         }
     }
 }
