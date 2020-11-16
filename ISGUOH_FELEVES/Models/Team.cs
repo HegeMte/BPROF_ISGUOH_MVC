@@ -24,7 +24,7 @@ namespace Models
         public string LeagueID { get; set; }
 
         [NotMapped]
-        public League League { get; set; }
+        public virtual League League { get; set; }
     }
 
 }

@@ -11,10 +11,7 @@ namespace Repository
     {
         PlayersDbContext context = new PlayersDbContext();
 
-        public TeamRepo(PlayersDbContext context)
-        {
-            this.context = context;
-        }
+     
 
         public void Add(Team item)
         {

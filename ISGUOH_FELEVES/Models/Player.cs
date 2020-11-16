@@ -21,7 +21,7 @@ namespace Models
             public int WeakFoot { get; set; }
 
             [NotMapped]
-            public Team Csapat { get; set; }
+            public virtual Team Csapat { get; set; }
 
             public string TeamID { get; set; }
 

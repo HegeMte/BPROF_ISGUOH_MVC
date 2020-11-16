@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Models;
+using Repository;
+using Data;
 
 namespace ISGUOH_FELEVES
 {
@@ -20,6 +23,11 @@ namespace ISGUOH_FELEVES
             services.AddTransient<PlayerLogic, PlayerLogic>();
             services.AddTransient<TeamLogic, TeamLogic>();
             services.AddTransient<LeagueLogic, LeagueLogic>();
+            services.AddTransient<IRepository<Player>, PlayerRepo>();
+            services.AddTransient<IRepository<Team>, TeamRepo>();
+            services.AddTransient<IRepository<League>, LeagueRepo>();
+
+            
 
             services.AddMvc(opt => opt.EnableEndpointRouting = false);
 

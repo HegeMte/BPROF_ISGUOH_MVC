@@ -11,10 +11,7 @@ namespace Repository
     {
         PlayersDbContext context = new PlayersDbContext();
 
-        public PlayerRepo(PlayersDbContext contect)
-        {
-            this.context = contect;
-        }
+       
         public void Add(Player item)
         {
             context.Jatekosok.Add(item);

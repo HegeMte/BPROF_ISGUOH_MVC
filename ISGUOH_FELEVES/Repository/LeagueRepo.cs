@@ -11,11 +11,7 @@ namespace Repository
     {
         PlayersDbContext context = new PlayersDbContext();
 
-        public LeagueRepo(PlayersDbContext context)
-        {
-            this.context = context;
-        }
-
+       
         public void Add(League item)
         {
             context.Liga.Add(item);
