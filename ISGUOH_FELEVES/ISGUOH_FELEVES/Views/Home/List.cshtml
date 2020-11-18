@@ -1,0 +1,21 @@
+﻿@using Models
+@model IQueryable<Player>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>list</title>
+    </head>
+    <body>
+        @foreach (var item in Model)
+        {
+            <p>Játékos Neve:</p><p>@item.PlayerName</p><br />
+            <p>Nemzetiség:</p><p>@item.Nationality</p><br />
+            <p>Rating: </p><p>@item.Rating</p><br />
+            <p>WeakFoot: </p><p>@item.WeakFoot</p><br />
+        }
+    </body>
+</html>
+
+
