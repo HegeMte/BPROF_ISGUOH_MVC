@@ -25,7 +25,7 @@ namespace Data
             {
                 optionsBuilder.
                     UseLazyLoadingProxies().
-                    UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Player.mdf;integrated security=True;MultipleActiveResultSets=True");
+                    UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|Player.mdf;integrated security=True;MultipleActiveResultSets=True");
             }
         }
 

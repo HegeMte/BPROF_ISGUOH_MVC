@@ -29,7 +29,7 @@ namespace ISGUOH_FELEVES
 
             
 
-            services.AddMvc(opt => opt.EnableEndpointRouting = false);
+            services.AddMvc(opt => opt.EnableEndpointRouting = false).AddRazorRuntimeCompilation();
 
         }
 
@@ -42,7 +42,9 @@ namespace ISGUOH_FELEVES
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+            
            
         }
     }
