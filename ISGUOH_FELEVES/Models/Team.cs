@@ -12,9 +12,6 @@ namespace Models
         public string TeamID { get; set; }
 
         [StringLength(25)]
-        public string TeamName { get; set; }
-
-        [StringLength(25)]
         public string City { get; set; }
 
         

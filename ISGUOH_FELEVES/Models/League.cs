@@ -8,9 +8,7 @@ namespace Models
     public class League
     {
         [Key]
-        public string LeagueID { get; set; }
-        [StringLength(25)]
-        public string LeagueName { get; set; }
+        public string LeagueID { get; set; } // Ligának a neve
         [StringLength(25)]
         public string Country { get; set; }
 

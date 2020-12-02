@@ -1,0 +1,23 @@
+﻿@model string 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Team</title>
+</head>
+<body>
+
+    <form action="/Home/AddTeam" method="post">
+
+        ID:
+        <input type="text" name="TeamID" />
+        <br />  
+        CITY:
+        <input type="text" name="City"  />
+        <br />  
+        <input type="hidden" name="LeagueID" value="@Model" />
+        <input type="submit"  value="ADD TEAM" />
+
+    </form>
+
+</body>
+</html>

@@ -47,6 +47,11 @@ namespace Logic
             leaguerepo.Update(oldLeague, newLeague);
         }
 
+        public IQueryable<Team> GetTeams(string LigaID)
+        {
+            return leaguerepo.Read(LigaID).Teams.AsQueryable();
+        }
+
 
     }
 }

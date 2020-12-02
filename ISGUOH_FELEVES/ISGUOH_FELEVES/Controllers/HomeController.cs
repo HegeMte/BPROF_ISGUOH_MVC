@@ -26,28 +26,120 @@ namespace ISGUOH_FELEVES.Controllers
             return View();
         }
 
-        public IActionResult AddPlayer()
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+   
+        
+        //PLAYER
+        public IActionResult AddPlayer(string id)
+        {
+            return View(nameof(AddPlayer),id);
+        }
+
+        [HttpPost]
+
+       public IActionResult AddPlayer(Player p)
+        {
+            p.IgazolasSzama = Guid.NewGuid().ToString();
+            playerlogic.AddPlayer(p);
+
+            return View(nameof(ListPlayers), teamlogic.GetTeam(p.TeamID).Jatekosok);
+        }
+
+        [HttpGet]
+        public IActionResult ListPlayers(string id)
+        {
+
+            return View(nameof(ListPlayers),teamlogic.GetTeam(id).Jatekosok);
+        }
+
+
+        //League
+        public IActionResult AddLeague()
         {
             return View();
         }
 
         [HttpPost]
 
-        public IActionResult AddPlayer(Player p)
+        public IActionResult AddLeague(League l)
         {
-            p.IgazolasSzama = Guid.NewGuid().ToString();
-            playerlogic.AddPlayer(p);
+            leaguelogic.AddLeague(l);
 
-            return RedirectToAction(nameof(List));
+            return RedirectToAction(nameof(ListLeague));
         }
 
+        [HttpGet]
+        public IActionResult ListLeague()
+        {
+            return View(leaguelogic.GetAllLeague());
+        }
+
+        [HttpGet]
+        public IActionResult LeagueTeamList(string id)
+        {
+
+            return View(nameof(ListTeams), leaguelogic.GetTeams(id));
+        }
 
 
         [HttpGet]
-        public IActionResult List()
+        public IActionResult UpdateLeague(string id)
         {
-            return View(playerlogic.GetAllPlayers());
+
+            return View(nameof(UpdateLeague),leaguelogic.GetLeague(id));
         }
+
+        [HttpPost]
+        public IActionResult UpdateLeague(League L)
+        {
+            leaguelogic.UpdateLeague(L.LeagueID, L);
+
+            return View(nameof(ListLeague),leaguelogic.GetAllLeague());
+        }
+
+
+        //TEAM
+        public IActionResult AddTeam(string id)
+        {
+            return View(nameof(AddTeam),id);
+        }
+
+        [HttpPost]
+
+        public IActionResult AddTeam(Team t)
+        {
+
+            teamlogic.AddTeam(t);
+            League L = leaguelogic.GetLeague(t.LeagueID);
+            //L.Teams.Add(t);
+            //return RedirectToAction(nameof(LeagueTeamList), L.LeagueID);
+            //return RedirectToAction(nameof(ListTeams),L.Teams);
+            return View(nameof(ListTeams), leaguelogic.GetTeams(t.LeagueID));
+        }
+
+        [HttpGet]
+        public IActionResult ListTeams()
+        {
+            return View(teamlogic.GetAllTeam());
+        }
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
 
 
 

@@ -48,7 +48,6 @@ namespace Repository
         public void Update(string RegiCsapat, Team ujCsapat)
         {
             var regicsapat = Read(RegiCsapat);
-            regicsapat.TeamName = ujCsapat.TeamName;
             regicsapat.City = ujCsapat.City;
             
 

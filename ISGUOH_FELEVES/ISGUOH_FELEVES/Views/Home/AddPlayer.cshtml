@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model string
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +20,7 @@
         WeakFoot:
         <input type="number" name="WeakFoot" />
         <br />
+        <input type="hidden" name="TeamID" value="@Model" />
         
         <input type="submit"  value="Küldés" />
 

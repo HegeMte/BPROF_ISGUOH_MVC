@@ -48,17 +48,11 @@ namespace Repository
         public void Update(string RegiligaID, League UjLiga)
         {
             var Regiliga = Read(RegiligaID);
-            Regiliga.LeagueName = UjLiga.LeagueName;
             Regiliga.Country = UjLiga.Country;
-
-
-            Regiliga.Teams.Clear();
-            foreach (var item in UjLiga.Teams)
-            {
-                Regiliga.Teams.Add(item);
-            }
 
             context.SaveChanges();
         }
+
+
     }
 }

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Models.Team>
+
+@{
+    ViewData["Title"] = "ListTeams";
+}
+
+<h1>ListTeams</h1>
+
+<p>
+    <a href="/Home/ListLeague">Back to the Leagues</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeagueID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeagueID)
+            </td>
+            <td>
+                <a href="/Home/AddPlayer?id=@item.TeamID">Add player</a>
+                <br />  
+                <a href="/Home/ListPlayers?id=@item.TeamID">List Players</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

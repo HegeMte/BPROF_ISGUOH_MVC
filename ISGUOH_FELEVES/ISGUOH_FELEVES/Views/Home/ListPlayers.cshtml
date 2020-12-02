@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Models.Player>
+
+<h1>ListPlayers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeakFoot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeakFoot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamID)
+            </td>
+            <td>
+               
+            </td>
+        </tr>
+}          <a href="/">Back to the home page</a>
+    </tbody>
+</table>
