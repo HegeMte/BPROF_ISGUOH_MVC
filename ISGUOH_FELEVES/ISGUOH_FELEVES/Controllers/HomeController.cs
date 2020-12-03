@@ -51,6 +51,9 @@ namespace ISGUOH_FELEVES.Controllers
             Team t = new Team { TeamID = "Liverpool", City = "Liverpool", LeagueID = L.LeagueID };
             teamlogic.AddTeam(t);
 
+            Team ta = new Team { TeamID = "Chelsea", City = "London", LeagueID = L.LeagueID };
+            teamlogic.AddTeam(ta);
+
             Player p = new Player { PlayerName = "Van Dijk", TeamID = t.TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 };
             p.IgazolasSzama = Guid.NewGuid().ToString();
             playerlogic.AddPlayer(p);
@@ -231,7 +234,30 @@ namespace ISGUOH_FELEVES.Controllers
 
 
         //----------------------------------------------------------------------------------------------------------------------------
-        //NONcrud
+        //NON CRUD
+
+        public IActionResult Stat()
+        {
+            Stat s = new Stat();
+
+
+            var q = leaguelogic.GetAllLeague();
+            League L = new League();
+            L = q.OrderByDescending(x => x.Teams.Count).FirstOrDefault();
+            s.LegnagyobbLiga = L.LeagueID;
+
+
+
+
+            var q1 = playerlogic.GetAllPlayers();
+            Player player = new Player();
+            player = q1.OrderByDescending(x => x.Rating).FirstOrDefault();
+            s.MaxRatingJatekos = player.PlayerName;
+
+            return View(s);
+
+        }
+
 
 
 
