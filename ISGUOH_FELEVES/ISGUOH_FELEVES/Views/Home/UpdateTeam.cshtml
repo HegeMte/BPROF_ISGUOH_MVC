@@ -1,0 +1,23 @@
+﻿@using Models
+@model Team
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Team</title>
+</head>
+<body>
+
+    <form action="/Home/UpdateTeam" method="post">
+
+        <input type="hidden" name="TeamID" value="@Model.TeamID" />
+        <br />
+        CITY:
+        <input type="text" name="City" value="@Model.City" />
+        <br />
+        <input type="hidden" name="LeagueID" value="@Model.LeagueID" />
+        <input type="submit" value="Update TEAM" />
+
+    </form>
+
+</body>
+</html>

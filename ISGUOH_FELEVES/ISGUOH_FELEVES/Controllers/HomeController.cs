@@ -31,8 +31,62 @@ namespace ISGUOH_FELEVES.Controllers
             return View();
         }
 
-   
-        
+
+        //DATA
+  
+        [HttpGet]
+        public IActionResult Data()
+        {
+            return View();
+        }
+
+        //GENERATE DATA
+        [HttpGet]
+        public IActionResult GenerateData()
+        {
+
+            League L = new League { LeagueID = "Premier Leauge", Country = "England" };
+            leaguelogic.AddLeague(L);
+
+            Team t = new Team { TeamID = "Liverpool", City = "Liverpool", LeagueID = L.LeagueID };
+            teamlogic.AddTeam(t);
+
+            Player p = new Player { PlayerName = "Van Dijk", TeamID = t.TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 };
+            p.IgazolasSzama = Guid.NewGuid().ToString();
+            playerlogic.AddPlayer(p);
+
+            //----------------------------------------------------------------------------------------------------------------------------
+
+            League L1 = new League { LeagueID = "MB1", Country = "Hungary" };
+            leaguelogic.AddLeague(L1);
+
+            Team t1 = new Team { TeamID = "Kaposvár", City = "Kaposvár", LeagueID = L1.LeagueID };
+            teamlogic.AddTeam(t1);
+
+            Player p1 = new Player { PlayerName = "Ács Péter", TeamID = t1.TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 5 };
+            p1.IgazolasSzama = Guid.NewGuid().ToString();
+            playerlogic.AddPlayer(p1);
+
+            //----------------------------------------------------------------------------------------------------------------------------
+
+            League L2 = new League { LeagueID = "Seria A", Country = "Italy" };
+            leaguelogic.AddLeague(L2);
+
+            Team t2 = new Team { TeamID = "Juventus", City = "Torino", LeagueID = L2.LeagueID };
+            teamlogic.AddTeam(t2);
+
+            Player p2 = new Player { PlayerName = "Cristano Ronaldo", TeamID = t2.TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5 };
+            p2.IgazolasSzama = Guid.NewGuid().ToString();
+            playerlogic.AddPlayer(p2);
+
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------
+
+
         //PLAYER
         public IActionResult AddPlayer(string id)
         {
@@ -50,11 +104,39 @@ namespace ISGUOH_FELEVES.Controllers
         }
 
         [HttpGet]
+        public IActionResult ListAllPlayer()
+        {
+
+            return View(nameof(ListPlayers),playerlogic.GetAllPlayers());
+        }
+
+
+        [HttpGet]
         public IActionResult ListPlayers(string id)
         {
 
             return View(nameof(ListPlayers),teamlogic.GetTeam(id).Jatekosok);
         }
+
+        [HttpGet]
+
+        public IActionResult UpdatePlayer(string id)
+        {
+
+            return View(nameof(UpdatePlayer), playerlogic.GetPlayer(id));
+        }
+
+        [HttpPost]
+
+        public IActionResult UpdatePlayer(Player p)
+        {
+            playerlogic.UpdatePlayer(p.IgazolasSzama, p);
+
+            return View(nameof(ListPlayers), playerlogic.PlayersFromThisTeam(p.TeamID));
+        }
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------
 
 
         //League
@@ -101,6 +183,9 @@ namespace ISGUOH_FELEVES.Controllers
             return View(nameof(ListLeague),leaguelogic.GetAllLeague());
         }
 
+        //----------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------
+
 
         //TEAM
         public IActionResult AddTeam(string id)
@@ -127,6 +212,26 @@ namespace ISGUOH_FELEVES.Controllers
             return View(teamlogic.GetAllTeam());
         }
 
+        [HttpGet]
+        public IActionResult UpdateTeam(string id)
+        {
+
+            return View(nameof(UpdateTeam),teamlogic.GetTeam(id));
+        }
+
+
+        [HttpPost]
+        public IActionResult UpdateTeam(Team t)
+        {
+            teamlogic.UpdateTeam(t.TeamID, t);
+
+
+            return View(nameof(ListTeams), teamlogic.GetTeamsfromLeague(t.LeagueID));
+        }
+
+
+        //----------------------------------------------------------------------------------------------------------------------------
+        //NONcrud
 
 
 
@@ -136,7 +241,6 @@ namespace ISGUOH_FELEVES.Controllers
 
 
 
-       
 
 
 

@@ -9,7 +9,7 @@ namespace Models
     public class Team
     {
         [Key]
-        public string TeamID { get; set; }
+        public string TeamID { get; set; } //Csapat neve
 
         [StringLength(25)]
         public string City { get; set; }

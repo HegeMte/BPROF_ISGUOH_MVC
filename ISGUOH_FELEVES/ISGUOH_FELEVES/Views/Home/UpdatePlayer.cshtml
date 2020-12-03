@@ -1,0 +1,32 @@
+﻿@using Models
+@model Player
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Player</title>
+</head>
+<body>
+    <form action="/Home/UpdatePlayer" method="post">
+        Játékos neve:
+        <input type="text" name="PlayerName" value="@Model.PlayerName" />
+        <br />
+        Nemzetiség:
+        <input type="text" name="Nationality"  value="@Model.Nationality" />
+        <br />
+        Rating:
+        <input type="number" name="Rating"  value="@Model.Rating"/>
+        <br />
+        WeakFoot:
+        <input type="number" name="WeakFoot" value="@Model.WeakFoot" />
+        <br />
+        <input type="hidden" name="TeamID" value="@Model.TeamID" />
+        <input type="hidden" name="IgazolasSzama" value="@Model.IgazolasSzama" />
+
+        <input type="submit" value="Küldés" />
+
+
+    </form>
+</body>
+</html>

@@ -49,14 +49,7 @@ namespace Repository
         {
             var regicsapat = Read(RegiCsapat);
             regicsapat.City = ujCsapat.City;
-            
-
-            regicsapat.Jatekosok.Clear();
-            foreach (var item in ujCsapat.Jatekosok)
-            {
-                regicsapat.Jatekosok.Add(item);
-            }
-
+        
             context.SaveChanges();
         }
     }

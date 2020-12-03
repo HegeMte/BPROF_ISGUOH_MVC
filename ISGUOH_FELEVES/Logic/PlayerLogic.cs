@@ -48,5 +48,16 @@ namespace Logic
         }
 
 
+        public IQueryable<Player> PlayersFromThisTeam(string TeamID)
+        {
+
+            var q1 = from x in playerrepo.Read()
+                     where x.TeamID == TeamID
+                     select x;
+
+            return q1.AsQueryable();
+
+        }
+
     }
 }
