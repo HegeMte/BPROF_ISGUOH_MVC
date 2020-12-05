@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "ListTeams";
 }
+<head>
+    <link href="~/ListPlayers.css" rel="stylesheet" />
+</head>
 
 <h1>ListTeams</h1>
 
@@ -10,44 +13,48 @@
     <a href="/Home/ListLeague">Back to the Leagues</a>
     <a href="/">Back To the Home Page</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TeamID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LeagueID)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeagueID)
-            </td>
-            <td>
-                <a href="/Home/AddPlayer?id=@item.TeamID">Add player</a>
-                <br />  
-                <a href="/Home/ListPlayers?id=@item.TeamID">List Players</a>
-                <br />
-                <a href="/Home/UpdateTeam?id=@item.TeamID">Update Team</a>
-                <br />
-                
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TeamID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LeagueID)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TeamID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeagueID)
+                    </td>
+                    <td>
+                        <a href="/Home/AddPlayer?id=@item.TeamID">Add player</a>
+                        <br />
+                        <a href="/Home/ListPlayers?id=@item.TeamID">List Players</a>
+                        <br />
+                        <a href="/Home/UpdateTeam?id=@item.TeamID">Update Team</a>
+                        <br />
 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
