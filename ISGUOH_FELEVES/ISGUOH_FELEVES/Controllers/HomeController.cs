@@ -147,6 +147,15 @@ namespace ISGUOH_FELEVES.Controllers
             return View(nameof(ListPlayers), playerlogic.PlayersFromThisTeam(p.TeamID));
         }
 
+        public IActionResult DeletePlayer(string id)
+        {
+
+            playerlogic.DeletePlayer(id);
+
+            
+            return View(nameof(ListPlayers),playerlogic.PlayersFromThisTeam(id));
+
+        }
         //----------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------------
 
@@ -195,6 +204,16 @@ namespace ISGUOH_FELEVES.Controllers
             return View(nameof(ListLeague),leaguelogic.GetAllLeague());
         }
 
+
+        public IActionResult DeleteLeague(string id)
+        {
+
+            leaguelogic.DeleteLeague(id);
+
+
+            return View(nameof(ListLeague),leaguelogic.GetAllLeague());
+        }
+
         //----------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------------
 
@@ -239,6 +258,16 @@ namespace ISGUOH_FELEVES.Controllers
 
 
             return View(nameof(ListTeams), teamlogic.GetTeamsfromLeague(t.LeagueID));
+        }
+
+        public IActionResult DeleteTeam(string id)
+        {
+            
+            teamlogic.DeleteTeam(teamlogic.GetTeam(id));
+
+            
+            return View(nameof(ListTeams),teamlogic.GetTeamsfromLeague(teamlogic.GetTeam(id).LeagueID));
+            
         }
 
 

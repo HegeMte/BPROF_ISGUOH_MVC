@@ -39,14 +39,16 @@ namespace Data
                 entity
                 .HasOne(Player => Player.Csapat)
                 .WithMany(Team => Team.Jatekosok)
-                .HasForeignKey(Player => Player.TeamID);
+                .HasForeignKey(Player => Player.TeamID)
+                .OnDelete(DeleteBehavior.Cascade);
             });
             modelbuilder.Entity<Team>(entity =>
             {
                 entity
                 .HasOne(Team => Team.League)
                 .WithMany(League => League.Teams)
-                .HasForeignKey(Team => Team.LeagueID);
+                .HasForeignKey(Team => Team.LeagueID)
+                .OnDelete(DeleteBehavior.Cascade);
             });
         }
 
