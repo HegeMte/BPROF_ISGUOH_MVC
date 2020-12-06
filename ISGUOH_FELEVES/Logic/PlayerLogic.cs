@@ -59,5 +59,22 @@ namespace Logic
 
         }
 
+        public string MaxRatedPlayer()
+        {
+            var q1 = playerrepo.Read();
+            
+          var player= q1.OrderByDescending(x => x.Rating).FirstOrDefault();
+
+            return player.PlayerName;
+        }
+
+
+        public int PlayerCount()
+        {
+
+            return playerrepo.Read().Count();
+
+        }
+
     }
 }

@@ -53,5 +53,21 @@ namespace Logic
         }
 
 
+        public string LegNagyobbLiga()
+        {
+           var q = leaguerepo.Read();
+           var neve = q.OrderByDescending(x => x.Teams.Count).FirstOrDefault();
+           
+           return neve.LeagueID;
+
+        }
+
+
+        public int LeagueCount()
+        {
+
+            return leaguerepo.Read().Count();
+        }
+
     }
 }

@@ -3,13 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="~/ListPlayers.css" rel="stylesheet" />
     <title>Stat</title>
 </head>
 <body>
-    <p>Legnagyobb liga :  @Model.LegnagyobbLiga</p>
-    <p>Legnagyobb ratinggel rendelkező játékos :  @Model.MaxRatingJatekos</p>
+    <h1>Statistics</h1>
+    <a href="/">Back to the home page</a>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
 
+                    <th>
+                        League
+                    </th>
+                    <th>
+                        Max rated Player
+                    </th>
+                    <th>
+                        Player Count
+                    </th>
 
+                    <th>
+                        League Count
+                    </th>
+
+                </tr>
+            </thead>
+            <tr>
+                <td>@Model.LegnagyobbLiga</td>
+                <td> @Model.MaxRatingJatekos</td>
+                <td> @Model.JatekosokSzama</td>
+                <td> @Model.LeagueCount</td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 </html>

@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<Models.Player>
-    <head>
-        <link href="~/ListPlayers.css" rel="stylesheet" />
-    </head>
+<head>
+    <link href="~/ListPlayers.css" rel="stylesheet" />
+</head>
 <h1>ListPlayers</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<a href="/">Back to the home page</a>
+<br />  
+<a href="/Home/ListLeague">Back to the leagues</a>
 <div class="container">
 
     <table class="table">
@@ -54,9 +53,7 @@
                     </td>
                 </tr>
             }
-            <a href="/">Back to the home page</a>
-            <br />
-            <a href="/Home/ListLeague">Back to the leagues</a>
+
 
         </tbody>
     </table>

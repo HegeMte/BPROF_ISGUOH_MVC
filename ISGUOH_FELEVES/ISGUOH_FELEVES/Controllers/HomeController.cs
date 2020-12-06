@@ -249,18 +249,13 @@ namespace ISGUOH_FELEVES.Controllers
         {
             Stat s = new Stat();
 
-
-            var q = leaguelogic.GetAllLeague();
-            League L = new League();
-            L = q.OrderByDescending(x => x.Teams.Count).FirstOrDefault();
-            s.LegnagyobbLiga = L.LeagueID;
-
+            s.LegnagyobbLiga = leaguelogic.LegNagyobbLiga();
+            s.MaxRatingJatekos = playerlogic.MaxRatedPlayer();
+            s.JatekosokSzama = playerlogic.PlayerCount();
+            s.LeagueCount = leaguelogic.LeagueCount();
 
 
-            var q1 = playerlogic.GetAllPlayers();
-            Player player = new Player();
-            player = q1.OrderByDescending(x => x.Rating).FirstOrDefault();
-            s.MaxRatingJatekos = player.PlayerName;
+
 
             return View(s);
 
