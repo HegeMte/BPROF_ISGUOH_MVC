@@ -3,21 +3,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="~/ADD.css" rel="stylesheet" />
     <title>Update Team</title>
 </head>
 <body>
+    <div class="container">
 
-    <form action="/Home/UpdateTeam" method="post">
+        <h2>Team Update</h2>
 
-        <input type="hidden" name="TeamID" value="@Model.TeamID" />
-        <br />
-        CITY:
-        <input type="text" name="City" value="@Model.City" />
-        <br />
-        <input type="hidden" name="LeagueID" value="@Model.LeagueID" />
-        <input type="submit" value="Update TEAM" />
+        <div class="form">
+            <form action="/Home/UpdateTeam" method="post">
 
-    </form>
+                <input type="hidden" name="TeamID" value="@Model.TeamID" />
+                <br />
+                CITY:
+                <input type="text" name="City" value="@Model.City" />
+                <br />
+                <input type="hidden" name="LeagueID" value="@Model.LeagueID" />
+                <input type="submit" value="Update TEAM" />
+
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>

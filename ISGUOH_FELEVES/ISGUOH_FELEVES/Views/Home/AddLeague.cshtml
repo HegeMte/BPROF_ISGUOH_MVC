@@ -2,19 +2,25 @@
 <html>
 <head>
     <title>Add League</title>
+    <link href="~/ADD.css" rel="stylesheet" />
 
 </head>
 <body>
+    
+    <div class="container">
 
-    <form action="/Home/AddLeague" method="post">
-        <p>Adjon hozzá egy ligát, a liga aza datbázisban csak EGYSZER szerepel!</p>
-        <input type="text" name="LeagueID" />
-        <p>Country</p>
-        <input type="text" name="Country" />
-        <input type="submit"  value="ADD" />
-    </form>
+        <h2>Adjon hozzá egy ligát, a liga az adatbázisban csak EGYSZER szerepelhet!</h2>
 
-
+        <div class="form">
+            <form action="/Home/AddLeague" method="post">
+                <p>League Name</p>
+                <input type="text" name="LeagueID" />
+                <p>Country</p>
+                <input type="text" name="Country" />
+                <input type="submit" value="ADD" />
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>

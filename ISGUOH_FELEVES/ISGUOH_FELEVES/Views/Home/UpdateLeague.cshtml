@@ -3,17 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="~/ADD.css" rel="stylesheet" />
     <title>Edit League</title>
 </head>
 <body>
 
-    <form action="/Home/UpdateLeague" method="post">
-        <input type="hidden" name="LeagueID" value="@Model.LeagueID" />
-        <p>Country</p>
-        <input type="text" name="Country" value="@Model.Country" />
-        <input type="submit" value="ADD" />
-    </form>
 
+    <div class="container">
+        
+        <h2>League Update:</h2>
+        <div class="form">
+            <form action="/Home/UpdateLeague" method="post">
+                <input type="hidden" name="LeagueID" value="@Model.LeagueID" />
+                <p>Country</p>
+                <input type="text" name="Country" value="@Model.Country" />
+                <input type="submit" value="ADD" />
+
+            </form>
+        </div>
+    </div>
 
 
 </body>

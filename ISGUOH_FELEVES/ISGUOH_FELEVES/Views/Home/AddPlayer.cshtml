@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/ADD.css" rel="stylesheet" />
     <title>Index</title>
 </head>
 <body>
-    <form action="/Home/AddPlayer" method="post">
-        Játékos neve:
-        <input type="text" name="PlayerName" />
-        <br />
-        Nemzetiség:
-        <input type="text" name="Nationality" />
-        <br />
-        Rating:
-        <input type="number" name="Rating" />
-        <br />
-        WeakFoot:
-        <input type="number" name="WeakFoot" />
-        <br />
-        <input type="hidden" name="TeamID" value="@Model" />
-        
-        <input type="submit"  value="Küldés" />
+    <div class="container">
+
+        <div class="form">
+            <form action="/Home/AddPlayer" method="post">
+                <p>Játékos neve:</p>
+                <input type="text" name="PlayerName" />
+                <p>Nemzetiség:</p>
+                <input type="text" name="Nationality" />
+                <p>Rating:</p>
+                <input type="number" name="Rating" />
+                <p>WeakFoot:</p>
+                <input type="number" name="WeakFoot" />
+                <input type="hidden" name="TeamID" value="@Model" />
+                <input type="submit" value="Küldés" />
 
 
-    </form>
+            </form>
+        </div>
+     </div>
 </body>
 </html>
