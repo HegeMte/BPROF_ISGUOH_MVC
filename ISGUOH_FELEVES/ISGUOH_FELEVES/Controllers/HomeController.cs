@@ -262,11 +262,11 @@ namespace ISGUOH_FELEVES.Controllers
 
         public IActionResult DeleteTeam(string id)
         {
-            
+            var id2 = teamlogic.GetTeam(id).LeagueID;
             teamlogic.DeleteTeam(teamlogic.GetTeam(id));
 
             
-            return View(nameof(ListTeams),teamlogic.GetTeamsfromLeague(teamlogic.GetTeam(id).LeagueID));
+            return View(nameof(ListTeams),teamlogic.GetTeamsfromLeague(id2));
             
         }
 
