@@ -17,16 +17,16 @@
         <div class="form">
 
             <form action="/Home/UpdatePlayer" method="post">
-                Játékos neve:
+                <p>Játékos neve:</p>
                 <input type="text" name="PlayerName" value="@Model.PlayerName" />
                 <br />
-                Nemzetiség:
+                <p>Nemzetiség:</p>
                 <input type="text" name="Nationality" value="@Model.Nationality" />
                 <br />
-                Rating:
+                <p>Rating:</p>
                 <input type="number" name="Rating" value="@Model.Rating" />
                 <br />
-                WeakFoot:
+                <p>WeakFoot:</p>
                 <input type="number" name="WeakFoot" value="@Model.WeakFoot" />
                 <br />
                 <input type="hidden" name="TeamID" value="@Model.TeamID" />
