@@ -14,12 +14,14 @@ namespace ISGUOH_FELEVES.Controllers
         PlayerLogic playerlogic;
         LeagueLogic leaguelogic;
         TeamLogic teamlogic;
+        StatLogic statLogic;
 
-        public HomeController(PlayerLogic playerlogic, LeagueLogic leaguelogic, TeamLogic teamlogic)
+        public HomeController(PlayerLogic playerlogic, LeagueLogic leaguelogic, TeamLogic teamlogic, StatLogic statLogic)
         {
             this.playerlogic = playerlogic;
             this.leaguelogic = leaguelogic;
             this.teamlogic = teamlogic;
+            this.statLogic = statLogic;
         }
 
         public IActionResult Index()
@@ -278,13 +280,11 @@ namespace ISGUOH_FELEVES.Controllers
         {
             Stat s = new Stat();
 
-            s.LegnagyobbLiga = leaguelogic.LegNagyobbLiga();
-            s.MaxRatingJatekos = playerlogic.MaxRatedPlayer();
-            s.JatekosokSzama = playerlogic.PlayerCount();
-            s.LeagueCount = leaguelogic.LeagueCount();
-
-
-
+            s.LegnagyobbLiga = statLogic.LegNagyobbLiga();
+            s.MaxRatingJatekos = statLogic.MaxRatedPlayer();
+            s.JatekosokSzama = statLogic.PlayerCount();
+            s.LeagueCount = statLogic.LeagueCount();
+            s.AvgRatingLeaguename = statLogic.LigaAVGPlayer();
 
             return View(s);
 

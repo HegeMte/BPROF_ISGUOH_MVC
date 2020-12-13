@@ -10,10 +10,10 @@
     <div class="container">
         <h2>Adjon hozzá egy csapatot, a csapat az adatbázisban csak EGYSZER szerepelhet!</h2>
         <div class="form">
-            <form action="/Home/AddTeam" method="post">
+            <form action="/Home/AddTeam" method="post" >
 
                 <p>Team Name</p>
-                <input type="text" name="TeamID" />
+                <input type="text" name="TeamID" required />
                 <p>City</p>
                 <input type="text" name="City" />
                 <input type="hidden" name="LeagueID" value="@Model" />

@@ -14,6 +14,10 @@ namespace Models
 
         public int JatekosokSzama { get; set; }
 
+        public string AvgRatingLeaguename { get; set; }
+
 
     }
+
+
 }

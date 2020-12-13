@@ -59,22 +59,22 @@ namespace Logic
 
         }
 
-        public string MaxRatedPlayer()
-        {
-            var q1 = playerrepo.Read();
+        //public string MaxRatedPlayer()
+        //{
+        //    var q1 = playerrepo.Read();
             
-          var player= q1.OrderByDescending(x => x.Rating).FirstOrDefault();
+        //  var player= q1.OrderByDescending(x => x.Rating).FirstOrDefault();
 
-            return player.PlayerName;
-        }
+        //    return player.PlayerName;
+        //}
 
 
-        public int PlayerCount()
-        {
+        //public int PlayerCount()
+        //{
 
-            return playerrepo.Read().Count();
+        //    return playerrepo.Read().Count();
 
-        }
+        //}
 
     }
 }

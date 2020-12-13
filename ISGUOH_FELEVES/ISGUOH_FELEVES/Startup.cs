@@ -23,6 +23,7 @@ namespace ISGUOH_FELEVES
             services.AddTransient<PlayerLogic, PlayerLogic>();
             services.AddTransient<TeamLogic, TeamLogic>();
             services.AddTransient<LeagueLogic, LeagueLogic>();
+            services.AddTransient<StatLogic, StatLogic>();
             services.AddTransient<IRepository<Player>, PlayerRepo>();
             services.AddTransient<IRepository<Team>, TeamRepo>();
             services.AddTransient<IRepository<League>, LeagueRepo>();
