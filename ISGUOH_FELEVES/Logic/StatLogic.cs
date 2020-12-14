@@ -13,11 +13,16 @@ namespace Logic
         IRepository<Team> teamrepo;
         IRepository<League> leaguerepo;
 
-        public StatLogic(IRepository<Player> playerrepo, IRepository<Team> teamrepo, IRepository<League> leaguerepo)
+        public StatLogic(IRepository<Player> playerrepo, IRepository<Team> teamrepo)
         {
             this.playerrepo = playerrepo;
             this.teamrepo = teamrepo;
-            this.leaguerepo = leaguerepo;
+            
+        }
+
+        public StatLogic(IRepository<Player> playerrepo)
+        {
+            this.playerrepo = playerrepo;
         }
 
         //***************************************************************************************
@@ -52,10 +57,10 @@ namespace Logic
         }
 
 
-        public int PlayerCount()
+        public int PlayerCount(List<Player> playerlist)
         {
 
-            return playerrepo.Read().Count();
+            return playerlist.Count();
 
         }
 
@@ -64,22 +69,31 @@ namespace Logic
         //PLAYER
         //***************************************************************************************
 
-        public string LigaAVGPlayer()
+        public string TeamAVGPlayer(List<Player> playerlista,List<Team> teamlista)
         {
-            var q = (from x in leaguerepo.Read().ToList()
-                    join y in teamrepo.Read().ToList() on x.LeagueID equals y.LeagueID
-                    join z in playerrepo.Read().ToList() on y.TeamID equals z.TeamID
-                    group x by x.LeagueID into g
-                    select new 
-                    {
-                        LeagueName = g.Key,
-                        AVG = g.SelectMany(x =>x.Teams).SelectMany(x => x.Jatekosok).Average(x => x.Rating)
-
-                        
-                    }).OrderByDescending(x => x.AVG).FirstOrDefault();
+            //var q = (from x in leaguerepo.Read().ToList()
+            //         join y in teamrepo.Read().ToList() on x.LeagueID equals y.LeagueID
+            //         join z in playerrepo.Read().ToList() on y.TeamID equals z.TeamID
+            //         group x by x.LeagueID into g
+            //         select new
+            //         {
+            //             LeagueName = g.Key,
+            //             AVG = g.SelectMany(x => x.Teams).SelectMany(x => x.Jatekosok).Average(x => x.Rating)
 
 
-            return q.LeagueName;
+            //         }).OrderByDescending(x => x.AVG).FirstOrDefault();
+
+
+            var q = (from x in playerlista
+                     group x by x.TeamID into t
+                    join x in teamlista on t.Key equals x.TeamID
+                    orderby t.Average(x => x.Rating) descending
+                    select x).FirstOrDefault();
+
+
+
+
+            return q.TeamID;
         }
 
 

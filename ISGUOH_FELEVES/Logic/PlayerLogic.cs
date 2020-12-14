@@ -18,6 +18,12 @@ namespace Logic
             this.leaguerepo = leaguerepo;
         }
 
+      
+        public PlayerLogic(IRepository<Player> repo)
+        {
+            this.playerrepo = repo;
+        }
+
 
         public void AddPlayer(Player player)
         {

@@ -20,6 +20,10 @@ namespace Logic
             this.teamrepo = teamrepo;
         }
 
+        public TeamLogic(IRepository<Team> teamrepo)
+        {
+            this.teamrepo = teamrepo;
+        }
 
         public void AddTeam(Team team)
         {

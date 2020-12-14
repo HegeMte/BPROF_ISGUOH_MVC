@@ -20,6 +20,10 @@ namespace Logic
             this.leaguerepo = leaguerepo;
         }
 
+        public LeagueLogic(IRepository<League> leaguerepo)
+        {
+            this.leaguerepo = leaguerepo;
+        }
         public void AddLeague(League league)
         {
             this.leaguerepo.Add(league);

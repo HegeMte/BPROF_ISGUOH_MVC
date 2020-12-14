@@ -282,9 +282,9 @@ namespace ISGUOH_FELEVES.Controllers
 
             s.LegnagyobbLiga = statLogic.LegNagyobbLiga();
             s.MaxRatingJatekos = statLogic.MaxRatedPlayer();
-            s.JatekosokSzama = statLogic.PlayerCount();
+            s.JatekosokSzama = statLogic.PlayerCount(playerlogic.GetAllPlayers().ToList());
             s.LeagueCount = statLogic.LeagueCount();
-            s.AvgRatingLeaguename = statLogic.LigaAVGPlayer();
+            s.AvgRatingLeaguename = statLogic.TeamAVGPlayer(playerlogic.GetAllPlayers().ToList(),teamlogic.GetAllTeam().ToList());
 
             return View(s);
 
