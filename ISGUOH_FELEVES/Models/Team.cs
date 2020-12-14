@@ -22,6 +22,24 @@ namespace Models
 
         [NotMapped]
         public virtual League League { get; set; }
+
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Team)
+            {
+                Team t = obj as Team;
+                return this.TeamID == t.TeamID && this.City == t.City && this.Jatekosok == t.Jatekosok &&
+                    this.LeagueID == t.LeagueID && this.League == t.League;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 
 }

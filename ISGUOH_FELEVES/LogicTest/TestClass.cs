@@ -12,6 +12,66 @@ namespace LogicTest
     [TestFixture]
     public class TestClass
     {
+        Mock<IRepository<Player>> playerrepo;
+        Mock<IRepository<Team>> teamrepo;
+        Mock<IRepository<League>> leaguerepo;
+        string ExpectedLeagueName;
+        string ExpectedTeamAVGPLAYER;
+        string ExpectedTeamName;
+        IEnumerable<Player> ExpectedFilteredPlayers;
+
+        private StatLogic CreateLogicWithMocks()
+        {
+            playerrepo = new Mock<IRepository<Player>>();
+            teamrepo = new Mock<IRepository<Team>>();
+            leaguerepo = new Mock<IRepository<League>>();
+
+
+            League L1 = new League() { LeagueID = "Premier Leauge", Country = "England" };
+            League L2 = new League() { LeagueID = "MB1", Country = "Hungary" };
+            League L3 = new League() { LeagueID = "Seria A", Country = "Italy" };
+            List<League> leaguelist = new List<League>() { L1, L2, L3 };
+
+            List<Team> teamlist = new List<Team>()
+            {
+
+                new Team () { TeamID = "Liverpool", City = "Liverpool", LeagueID =  L1.LeagueID },
+                new Team () { TeamID = "Kaposvár", City = "Kaposvár", LeagueID = L2.LeagueID },
+                new Team() { TeamID = "Juventus", City = "Torino", LeagueID = L3.LeagueID }
+            };
+
+
+            List<Player> playerlist = new List<Player>()
+            {
+                new Player() { IgazolasSzama= Guid.NewGuid().ToString(),
+                    PlayerName = "Van Dijk", TeamID = teamlist[0].TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 /*,Csapat = teamlist[0]*/},
+
+                new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Ács Péter",
+                    TeamID = teamlist[1].TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 3, /*Csapat =teamlist[1]*/ },
+
+                new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Cristano Ronaldo",
+                    TeamID =teamlist[2].TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5, /*Csapat =teamlist[2]*/}
+            };
+
+
+            ExpectedLeagueName = L3.LeagueID;
+            ExpectedTeamName = teamlist[2].TeamID;
+            ExpectedTeamAVGPLAYER = teamlist[2].TeamID;
+            ExpectedFilteredPlayers = new List<Player>() {
+
+                new Player () {IgazolasSzama =playerlist[2].IgazolasSzama, PlayerName = "Cristano Ronaldo",
+                    TeamID =teamlist[2].TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5, /*Csapat =teamlist[2]*/}
+
+
+            };
+            leaguerepo.Setup(repo => repo.Read()).Returns(leaguelist.AsQueryable());
+            teamrepo.Setup(repo => repo.Read()).Returns(teamlist.AsQueryable());
+
+            playerrepo.Setup(repo => repo.Read()).Returns(playerlist.AsQueryable());
+
+
+            return new StatLogic(playerrepo.Object, teamrepo.Object, leaguerepo.Object);
+        }
         //::::::::::::::::::::::::::::::::::::::::::::::::::::CRUD TEST :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
         [Test]
@@ -164,194 +224,57 @@ namespace LogicTest
 
         }
 
-
-
-
         [Test]
 
         public void TeamAVGPlayerTest()
         {
-            Mock<IRepository<Player>> mockedPlayerRepo = new Mock<IRepository<Player>>(MockBehavior.Loose);
-            Mock<IRepository<Team>> mockedTeamRepo = new Mock<IRepository<Team>>(MockBehavior.Loose);
-
-            List<Team> teamlist = new List<Team>()
-            {
-
-                    new Team () { TeamID = "Liverpool", City = "Liverpool"},
-                    new Team () { TeamID = "Kaposvár", City = "Kaposvár"},
-                    new Team() { TeamID = "Juventus", City = "Torino"}
-            };
+            var logic = CreateLogicWithMocks();
+            var teszt = logic.TeamAVGPlayer();
 
 
-            List<Player> playerlist = new List<Player>()
-            {
-                    new Player() { IgazolasSzama= Guid.NewGuid().ToString(),
-                        PlayerName = "Van Dijk", TeamID = teamlist[0].TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 /*,Csapat = teamlist[0]*/},
 
-                    new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Ács Péter",
-                        TeamID = teamlist[1].TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 5, /*Csapat =teamlist[1]*/ },
-
-                    new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Cristano Ronaldo",
-                        TeamID =teamlist[2].TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5, /*Csapat =teamlist[2]*/}
-            };
-
-            mockedPlayerRepo.Setup(repo => repo.Read()).Returns(playerlist.AsQueryable());
-            mockedTeamRepo.Setup(repo => repo.Read()).Returns(teamlist.AsQueryable());
-            var expected = teamlist[2].TeamID;
-            StatLogic statlogic = new StatLogic(mockedPlayerRepo.Object, mockedTeamRepo.Object);
-
-            var result = statlogic.TeamAVGPlayer(playerlist, teamlist);
+            Assert.That(teszt, Is.EqualTo(ExpectedTeamAVGPLAYER));
+            playerrepo.Verify(x => x.Read(), Times.Once);
+            teamrepo.Verify(x => x.Read(), Times.Once);
+            leaguerepo.Verify(x => x.Read(), Times.Never);
 
 
-            Assert.That(result, Is.EqualTo(expected));
 
         }
 
 
+        [Test]
 
+        public void FilterPlayersTEST()
+        {
 
+            var logic = CreateLogicWithMocks();
+            var players = logic.FilterPlayers("Juventus");
 
+            Assert.That(players, Is.EquivalentTo(ExpectedFilteredPlayers));
 
+            playerrepo.Verify(x => x.Read(), Times.Once);
+            teamrepo.Verify(x => x.Read(), Times.Once);
+            leaguerepo.Verify(x => x.Read(), Times.Never);
 
 
 
+        }
 
 
+        [Test]
+        public void BESTWEAKFOOTSUMBYTEAM_TEST()
+        {
+            var logic = CreateLogicWithMocks();
+            var teamname = logic.BESTWEAKFOOTSUMBYTEAM();
 
+            Assert.That(teamname, Is.EqualTo(ExpectedTeamName));
 
+            playerrepo.Verify(x => x.Read(), Times.Once);
+            teamrepo.Verify(x => x.Read(), Times.Once);
+            leaguerepo.Verify(x => x.Read(), Times.Never);
 
 
-
-        //Mock<IRepository<Player>> playerrepo;
-        //Mock<IRepository<Team>> teamrepo;
-        //Mock<IRepository<League>> leaguerepo;
-        //string ExpectedLeagueName;
-
-        //private StatLogic CreateLogicWithMocks()
-        //{
-        //    playerrepo = new Mock<IRepository<Player>>();
-        //    teamrepo = new Mock<IRepository<Team>>();
-        //    leaguerepo = new Mock<IRepository<League>>();
-
-        //    League L1 = new League() { LeagueID = "Premier Leauge", Country = "England" };
-        //    League L2 = new League() { LeagueID = "MB1", Country = "Hungary" };
-        //    League L3 = new League() { LeagueID = "Seria A", Country = "Italy" };
-        //    List<League> leaguelist = new List<League>() { L1, L2, L3 };
-
-        //    List<Team> teamlist = new List<Team>()
-        //    {
-
-        //        new Team () { TeamID = "Liverpool", City = "Liverpool", LeagueID =  L1.LeagueID },
-        //        new Team () { TeamID = "Kaposvár", City = "Kaposvár", LeagueID = L2.LeagueID },
-        //        new Team() { TeamID = "Juventus", City = "Torino", LeagueID = L3.LeagueID }
-        //    };
-
-
-        //    List<Player> playerlist = new List<Player>()
-        //    {
-        //        new Player() { IgazolasSzama= Guid.NewGuid().ToString(),
-        //            PlayerName = "Van Dijk", TeamID = teamlist[0].TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 /*,Csapat = teamlist[0]*/},
-
-        //        new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Ács Péter",
-        //            TeamID = teamlist[1].TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 5, /*Csapat =teamlist[1]*/ },
-
-        //        new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Cristano Ronaldo",
-        //            TeamID =teamlist[2].TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5, /*Csapat =teamlist[2]*/}
-        //    };
-
-
-        //    ExpectedLeagueName = L3.LeagueID;
-
-        //    leaguerepo.Setup(repo => repo.Read()).Returns(leaguelist.AsQueryable());
-        //    teamrepo.Setup(repo => repo.Read()).Returns(teamlist.AsQueryable());
-
-        //    playerrepo.Setup(repo => repo.Read()).Returns(playerlist.AsQueryable());
-
-
-        //    return new StatLogic(playerrepo.Object, teamrepo.Object, leaguerepo.Object);
-        //}
-
-
-
-        //[Test]
-
-        //public void RemelemMukodikTest()
-        //{
-        //    var logic = CreateLogicWithMocks();
-        //    var LeagueName = logic.LigaAVGPlayer();
-
-
-        //    Assert.That(LeagueName, Is.EqualTo(ExpectedLeagueName));
-
-
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[Test]
-        //public void LigaAVGPlayerTEST()
-        //{
-        //    Mock<IRepository<Player>> playerrepo = new Mock<IRepository<Player>>();
-        //    Mock<IRepository<Team>> teamrepo = new Mock<IRepository<Team>>();
-        //    Mock<IRepository<League>> leaguerepo = new Mock<IRepository<League>>();
-
-        //    List<League> leaguelist = new List<League>()
-        //    {
-        //        new League ()  { LeagueID = "Premier Leauge", Country = "England" },
-        //        new League () { LeagueID = "MB1", Country = "Hungary" },
-        //        new League() { LeagueID = "Seria A", Country = "Italy" }
-
-
-        //    };
-
-        //    List<Team> teamlist = new List<Team>()
-        //    {
-
-        //        new Team () { TeamID = "Liverpool", City = "Liverpool", LeagueID = leaguelist[0].LeagueID },
-        //        new Team () { TeamID = "Kaposvár", City = "Kaposvár", LeagueID = leaguelist[1].LeagueID },
-        //        new Team() { TeamID = "Juventus", City = "Torino", LeagueID = leaguelist[2].LeagueID }
-        //    };
-
-
-        //    List<Player> playerlist = new List<Player>()
-        //    {
-        //        new Player() { IgazolasSzama= Guid.NewGuid().ToString(),
-        //            PlayerName = "Van Dijk", TeamID = teamlist[0].TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 /*,Csapat = teamlist[0]*/},
-
-        //        new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Ács Péter",
-        //            TeamID = teamlist[1].TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 5, /*Csapat =teamlist[1]*/ },
-
-        //        new Player () { IgazolasSzama= Guid.NewGuid().ToString(), PlayerName = "Cristano Ronaldo",
-        //            TeamID =teamlist[2].TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5, /*Csapat =teamlist[2]*/}
-        //    };
-
-
-        //    leaguerepo.Setup(repo => repo.Read()).Returns(leaguelist.AsQueryable());
-        //    teamrepo.Setup(repo => repo.Read()).Returns(teamlist.AsQueryable());
-        //    playerrepo.Setup(repo => repo.Read()).Returns(playerlist.AsQueryable());
-        //    StatLogic statlogic = new StatLogic(playerrepo.Object, teamrepo.Object, leaguerepo.Object);
-
-        //    var expected = leaguelist[2].LeagueID;
-        //    var result = statlogic.LigaAVGPlayer();
-
-        //    Assert.That(result, Is.EqualTo(expected));
-
-
-        //}
-
-
+        }
     }
 }

@@ -88,6 +88,10 @@ namespace ISGUOH_FELEVES.Controllers
                 p2.IgazolasSzama = Guid.NewGuid().ToString();
                 playerlogic.AddPlayer(p2);
 
+                Player p3 = new Player { PlayerName = "Khedira", TeamID = t2.TeamID, Nationality = "Germany", Rating = 81, WeakFoot = 3 };
+                p3.IgazolasSzama = Guid.NewGuid().ToString();
+                playerlogic.AddPlayer(p3);
+
                 voltemar = false;
             }
 
@@ -284,7 +288,9 @@ namespace ISGUOH_FELEVES.Controllers
             s.MaxRatingJatekos = statLogic.MaxRatedPlayer();
             s.JatekosokSzama = statLogic.PlayerCount(playerlogic.GetAllPlayers().ToList());
             s.LeagueCount = statLogic.LeagueCount();
-            s.AvgRatingLeaguename = statLogic.TeamAVGPlayer(playerlogic.GetAllPlayers().ToList(),teamlogic.GetAllTeam().ToList());
+            s.AvgRatingLeaguename = statLogic.TeamAVGPlayer(/*playerlogic.GetAllPlayers().ToList(),teamlogic.GetAllTeam().ToList()*/);
+            s.FilteredPlayers = statLogic.FilterPlayers("Juventus");
+            s.WeakFootTeam = statLogic.BESTWEAKFOOTSUMBYTEAM();
 
             return View(s);
 

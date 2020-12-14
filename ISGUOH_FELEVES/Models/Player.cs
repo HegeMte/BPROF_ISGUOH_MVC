@@ -25,5 +25,23 @@ namespace Models
 
             public string TeamID { get; set; }
 
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Player)
+            {
+                Player p = obj as Player;
+                return this.IgazolasSzama == p.IgazolasSzama && this.PlayerName == p.PlayerName && this.Nationality == p.Nationality &&
+                    this.Rating == p.Rating && this.WeakFoot == p.WeakFoot && this.Csapat == p.Csapat && this.TeamID == p.TeamID;
+            }
+            return false;
+
+        }
+
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }

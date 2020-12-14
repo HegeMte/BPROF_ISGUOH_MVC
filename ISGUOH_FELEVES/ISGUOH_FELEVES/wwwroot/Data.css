@@ -62,13 +62,8 @@ body {
     background-size: 100%;
 }
 
-a {
-    text-decoration: none;
-}
 
-.item:hover a h3 {
-    transform: translateY(0%);
-}
+
 
 
 .item header {

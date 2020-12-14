@@ -30,6 +30,12 @@
                     <th>
                         Top Rated Team
                     </th>
+                    <th>
+                        Filtered Players
+                    </th>
+                    <th>
+                        Best Weakfoot Squad
+                    </th>
 
                 </tr>
             </thead>
@@ -39,6 +45,16 @@
                 <td> @Model.JatekosokSzama</td>
                 <td> @Model.LeagueCount</td>
                 <td> @Model.AvgRatingLeaguename</td>
+                <td>@foreach (var item in Model.FilteredPlayers)
+                {
+                    @item.PlayerName 
+                    <br />
+                    <br />
+                }      
+                </td>   
+                <td>
+                    @Model.WeakFootTeam
+                </td>
 
             </tr>
         </table>
