@@ -132,7 +132,7 @@ namespace ISGUOH_FELEVES.Controllers
         [HttpGet]
         public IActionResult ListPlayers(string id)
         {
-
+            
             return View(nameof(ListPlayers),teamlogic.GetTeam(id).Jatekosok);
         }
 
@@ -155,11 +155,11 @@ namespace ISGUOH_FELEVES.Controllers
 
         public IActionResult DeletePlayer(string id)
         {
-
-            playerlogic.DeletePlayer(id);
-
-            
-            return View(nameof(ListPlayers),playerlogic.PlayersFromThisTeam(id));
+            string teamid = playerlogic.GetPlayer(id).TeamID;
+           playerlogic.DeletePlayer(id);
+           
+           
+            return View(nameof(ListPlayers),playerlogic.PlayersFromThisTeam(teamid));
 
         }
         //----------------------------------------------------------------------------------------------------------------------------

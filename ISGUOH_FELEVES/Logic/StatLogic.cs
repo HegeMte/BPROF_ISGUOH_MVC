@@ -77,6 +77,7 @@ namespace Logic
        //::::::::::::::::::::::::::::::::::::::::::::::::::JOIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+        // Visszaadja annak a csapatnak a nevét, amelynek legjobb a játékosok átlagrating-e
         public string TeamAVGPlayer(/*List<Player> playerlista,List<Team> teamlista*/)
         {
         
@@ -93,7 +94,7 @@ namespace Logic
 
     
 
-
+        // Csapatnév alapján kiszűri a játékosokat
 
         public IEnumerable<Player> FilterPlayers(string teamname)
         {
