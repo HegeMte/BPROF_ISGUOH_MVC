@@ -87,3 +87,11 @@ body {
 .item :hover .text {
     visibility: visible;
 }
+
+
+h2 {
+
+    position:center;
+    color:white;
+    font-size:18px;
+}

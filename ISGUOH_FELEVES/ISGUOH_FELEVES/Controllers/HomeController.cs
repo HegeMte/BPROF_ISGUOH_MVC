@@ -66,6 +66,10 @@ namespace ISGUOH_FELEVES.Controllers
                 p.IgazolasSzama = Guid.NewGuid().ToString();
                 playerlogic.AddPlayer(p);
 
+                Player pb = new Player { PlayerName = "Pulisics", TeamID = ta.TeamID, Nationality = "USA", Rating = 82, WeakFoot = 2 };
+                pb.IgazolasSzama = Guid.NewGuid().ToString();
+                playerlogic.AddPlayer(pb);
+
                 //----------------------------------------------------------------------------------------------------------------------------
 
                 League L1 = new League { LeagueID = "MB1", Country = "Hungary" };
@@ -82,6 +86,11 @@ namespace ISGUOH_FELEVES.Controllers
                 Player p1 = new Player { PlayerName = "Ács Péter", TeamID = t1.TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 5 };
                 p1.IgazolasSzama = Guid.NewGuid().ToString();
                 playerlogic.AddPlayer(p1);
+
+                Player p1b = new Player { PlayerName = "Gazdag Dávid", TeamID = t1b.TeamID, Nationality = "Hungary", Rating = 81, WeakFoot = 5 };
+                p1b.IgazolasSzama = Guid.NewGuid().ToString();
+                playerlogic.AddPlayer(p1b);
+
 
                 //----------------------------------------------------------------------------------------------------------------------------
 
@@ -145,6 +154,7 @@ namespace ISGUOH_FELEVES.Controllers
             return View(nameof(ListPlayers),teamlogic.GetTeam(id).Jatekosok);
         }
 
+
         [HttpGet]
 
         public IActionResult UpdatePlayer(string id)
@@ -171,6 +181,9 @@ namespace ISGUOH_FELEVES.Controllers
             return View(nameof(ListPlayers),playerlogic.PlayersFromThisTeam(teamid));
 
         }
+
+
+        
         //----------------------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------------
 
@@ -279,7 +292,7 @@ namespace ISGUOH_FELEVES.Controllers
         {
             var id2 = teamlogic.GetTeam(id).LeagueID;
             teamlogic.DeleteTeam(teamlogic.GetTeam(id));
-
+            
             
             return View(nameof(ListTeams),teamlogic.GetTeamsfromLeague(id2));
             
