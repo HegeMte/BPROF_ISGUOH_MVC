@@ -60,6 +60,8 @@ namespace ISGUOH_FELEVES.Controllers
                 Team ta = new Team { TeamID = "Chelsea", City = "London", LeagueID = L.LeagueID };
                 teamlogic.AddTeam(ta);
 
+          
+
                 Player p = new Player { PlayerName = "Van Dijk", TeamID = t.TeamID, Nationality = "Netherland", Rating = 90, WeakFoot = 2 };
                 p.IgazolasSzama = Guid.NewGuid().ToString();
                 playerlogic.AddPlayer(p);
@@ -72,6 +74,11 @@ namespace ISGUOH_FELEVES.Controllers
                 Team t1 = new Team { TeamID = "Kaposvár", City = "Kaposvár", LeagueID = L1.LeagueID };
                 teamlogic.AddTeam(t1);
 
+                Team t1b = new Team { TeamID = "MTK", City = "Budapest", LeagueID = L1.LeagueID };
+                teamlogic.AddTeam(t1b);
+
+
+
                 Player p1 = new Player { PlayerName = "Ács Péter", TeamID = t1.TeamID, Nationality = "Hungary", Rating = 76, WeakFoot = 5 };
                 p1.IgazolasSzama = Guid.NewGuid().ToString();
                 playerlogic.AddPlayer(p1);
@@ -83,6 +90,8 @@ namespace ISGUOH_FELEVES.Controllers
 
                 Team t2 = new Team { TeamID = "Juventus", City = "Torino", LeagueID = L2.LeagueID };
                 teamlogic.AddTeam(t2);
+
+
 
                 Player p2 = new Player { PlayerName = "Cristano Ronaldo", TeamID = t2.TeamID, Nationality = "Portugal", Rating = 94, WeakFoot = 5 };
                 p2.IgazolasSzama = Guid.NewGuid().ToString();
