@@ -37,6 +37,11 @@ namespace Logic
 
         }
 
+        public void DeleteTeamUid(string uid)
+        {
+            this.teamrepo.Delete(uid);
+        }
+
         public IQueryable<Team> GetAllTeam()
         {
             return teamrepo.Read();

@@ -1,0 +1,19 @@
+﻿<Window x:Class="ApiConsumer.AddTeamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiConsumer"
+        mc:Ignorable="d"
+        Title="AddTeamWindow" Height="357" Width="513">
+    <Grid>
+        <Label Content="Add Team" HorizontalAlignment="Left" Margin="194,21,0,0" VerticalAlignment="Top" Height="31" Width="83"/>
+        <Label Content="Team Name" HorizontalAlignment="Left" Margin="40,82,0,0" VerticalAlignment="Top" Height="37" Width="86"/>
+        <Label Content="City" HorizontalAlignment="Left" Margin="40,134,0,0" VerticalAlignment="Top" Height="27" Width="68"/>
+        <TextBox x:Name="TeamName" HorizontalAlignment="Left" Margin="144,83,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Height="36"/>
+        <TextBox  x:Name="City" HorizontalAlignment="Left" Margin="144,148,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Height="36"/>
+        <Button Click="AddTeam" Content="Add Team" HorizontalAlignment="Left" Margin="337,244,0,0" VerticalAlignment="Top" Height="56" Width="86"/>
+
+
+    </Grid>
+</Window>

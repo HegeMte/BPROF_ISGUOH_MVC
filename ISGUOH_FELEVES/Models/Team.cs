@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Models
 {
@@ -14,13 +15,14 @@ namespace Models
         [StringLength(25)]
         public string City { get; set; }
 
-        
+        [JsonIgnore]
         public virtual ICollection<Player> Jatekosok { get; set; }
 
         
         public string LeagueID { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual League League { get; set; }
 
 

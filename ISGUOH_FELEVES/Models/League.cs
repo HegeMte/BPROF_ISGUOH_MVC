@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Models
 {
@@ -13,6 +14,7 @@ namespace Models
         public string Country { get; set; }
 
 
+        [JsonIgnore]
         public virtual ICollection<Team> Teams { get; set; }
 
 

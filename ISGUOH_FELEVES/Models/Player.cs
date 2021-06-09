@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Models
 {
@@ -20,7 +21,8 @@ namespace Models
             [Range(0, 5)]
             public int WeakFoot { get; set; }
 
-            [NotMapped]
+        [JsonIgnore]
+        [NotMapped]
             public virtual Team Csapat { get; set; }
 
             public string TeamID { get; set; }

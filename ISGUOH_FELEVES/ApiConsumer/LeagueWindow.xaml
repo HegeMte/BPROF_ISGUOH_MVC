@@ -1,0 +1,19 @@
+﻿<Window x:Class="ApiConsumer.LeagueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiConsumer"
+        mc:Ignorable="d"
+        Title="LeagueWindow" Height="584" Width="902">
+    <Grid>
+        <DataGrid x:Name="Leaguegrid" Margin="10,77,10,110"  IsReadOnly="True"/>
+        <Button Click="Addleague" Content="Add League" HorizontalAlignment="Left" Margin="26,510,0,0" VerticalAlignment="Top" Height="32" Width="77" BorderBrush="ForestGreen" BorderThickness="3"/>
+        <Button Click="EditLeague" Content="Edit League" HorizontalAlignment="Left" Margin="128,510,0,0" VerticalAlignment="Top" Height="32" Width="82" BorderBrush="Yellow" BorderThickness="3" />
+        <Button Click="DeleteLeague" Content="Delete League" HorizontalAlignment="Left" Margin="235,510,0,0" VerticalAlignment="Top" Height="32" Width="90" BorderBrush="Red" BorderThickness="3" />
+        <Button Click="ListTeams"   Content="List Teams" HorizontalAlignment="Left" Margin="812,505,0,0" VerticalAlignment="Top" Height="32" Width="80"/>
+        <Label Content="All Leagues" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="207" FontSize="17"/>
+        <Button Click="Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="799,18,0,0" VerticalAlignment="Top" Width="53" Height="24"/>
+
+    </Grid>
+</Window>
