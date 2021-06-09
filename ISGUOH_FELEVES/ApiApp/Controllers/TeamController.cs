@@ -40,6 +40,13 @@ namespace ApiApp.Controllers
         }
 
 
+        [HttpGet("GetAllTeamFromLeague/{uid}")]
+        public IEnumerable<Team> GetAllTeamFromLeague(string uid)
+        {
+            return logic.GetTeamsfromLeague(uid);
+        }
+
+
         [HttpPost]
         public void AddTeam([FromBody] Team team)
         {
@@ -51,6 +58,10 @@ namespace ApiApp.Controllers
         {
             logic.UpdateTeam(oldid, team);
         }
+
+
+
+
 
     }
 }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,12 +23,19 @@ namespace ApiConsumer
         public TeamWindow()
         {
             InitializeComponent();
+
+
         }
+
+       
 
         public TeamWindow(string LeagueID)
         {
             this.League = LeagueID;
             InitializeComponent();
+            GetTeams(LeagueID);
+
+
 
         }
 
@@ -37,9 +46,24 @@ namespace ApiConsumer
             this.Close();
         }
 
-        private void ListTeams(object sender, RoutedEventArgs e)
+
+        public async Task GetTeams(string League)
         {
-            
+            Teamgrid.ItemsSource = null;
+            RestService restservice = new RestService("https://localhost:5001/", $"/Team/GetAllTeamFromLeague/{League}");
+
+
+
+            IEnumerable<Team> team = await restservice.Get<Team>();
+            Teamgrid.ItemsSource = team;
+
+            Teamgrid.SelectedIndex = 0;
+
+        }
+
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            GetTeams(League);
         }
     }
 }

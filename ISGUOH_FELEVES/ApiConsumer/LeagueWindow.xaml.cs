@@ -96,7 +96,9 @@ namespace ApiConsumer
 
         private void ListTeams(object sender, RoutedEventArgs e)
         {
-
+            TeamWindow tw = new TeamWindow((Leaguegrid.SelectedItem as League).LeagueID);
+            tw.Show();
+            this.Close();
         }
     }
 }

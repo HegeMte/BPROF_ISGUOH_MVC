@@ -27,7 +27,12 @@ namespace ApiConsumer
 
         private void AddTeam(object sender, RoutedEventArgs e)
         {
-            Team team = new Team() { City = City.Text, TeamID = TeamName.Text };
+            Team team = new Team()
+            {
+                City = City.Text.ToString(),
+                TeamID = TeamName.Text.ToString(),
+                LeagueID = leagueid.ToString()
+            };
 
             RestService restService = new RestService("https://localhost:5001/", "/Team");
             restService.Post<Team>(team);
