@@ -19,9 +19,11 @@ namespace ApiConsumer
     public partial class AddPlayerWindow : Window
     {
         Team team;
+        string token;
         
-        public AddPlayerWindow(Team team)
+        public AddPlayerWindow(Team team,string token)
         {
+            this.token = token;
             this.team = team;
             InitializeComponent();
             PlayerTeamID.Content = team.TeamID;
@@ -40,10 +42,10 @@ namespace ApiConsumer
             };
 
 
-            RestService restService = new RestService("https://localhost:5001/", "/Player");
+            RestService restService = new RestService("https://localhost:5001/", "/Player",token);
             restService.Post<Player>(player);
 
-            PlayersWindow playersWindow = new PlayersWindow(team);
+            PlayersWindow playersWindow = new PlayersWindow(team,token);
             playersWindow.Show();
             this.Close();
 

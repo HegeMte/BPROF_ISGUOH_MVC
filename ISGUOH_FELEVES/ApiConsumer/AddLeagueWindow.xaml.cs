@@ -18,8 +18,11 @@ namespace ApiConsumer
     /// </summary>
     public partial class AddLeagueWindow : Window
     {
-        public AddLeagueWindow()
+        string token;
+
+        public AddLeagueWindow(string token)
         {
+            this.token = token;
             InitializeComponent();
         }
 
@@ -34,10 +37,10 @@ namespace ApiConsumer
             };
 
 
-            RestService restservice = new RestService("https://localhost:5001/", "/League");
+            RestService restservice = new RestService("https://localhost:5001/", "/League", token);
             restservice.Post<League>(league);
 
-            LeagueWindow lwindow = new LeagueWindow();
+            LeagueWindow lwindow = new LeagueWindow(token);
             lwindow.Show();
             this.Close();
         }

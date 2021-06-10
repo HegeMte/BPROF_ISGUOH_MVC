@@ -5,14 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiConsumer"
         mc:Ignorable="d"
-        Title="TeamWindow" Height="594" Width="931">
+        Title="TeamWindow" Height="638" Width="955">
     <Grid>
+        <DataGrid x:Name="Teamgrid" Margin="10,77,10,0"  IsReadOnly="True" AutoGenerateColumns="False" Height="391" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Team Name" Binding="{Binding Path= TeamID}"  />
+                <DataGridTextColumn  Header="City" Binding="{Binding Path= City}"  />
+                <DataGridTextColumn  Header="League" Binding="{Binding Path= LeagueID}"  />
+            </DataGrid.Columns>
+        </DataGrid>
 
-        <DataGrid x:Name="Teamgrid" Margin="10,77,10,110"  IsReadOnly="True"/>
-        <Button Click="AddTeam" Content="Add Team" Margin="27,512,830,0" BorderBrush="ForestGreen" BorderThickness="3" Height="34" VerticalAlignment="Top"/>
-        <Button Click="Edit"  Content="Edit Team" HorizontalAlignment="Left" Margin="128,510,0,0" Width="82" BorderBrush="Yellow" BorderThickness="3" Height="34" VerticalAlignment="Top" />
-        <Button Click="Delete" Content="Delete Team" HorizontalAlignment="Left" Margin="235,510,0,0" Width="90" BorderBrush="Red" BorderThickness="3" Height="36" VerticalAlignment="Top" />
-        <Button Click="ListPlayers" Content="List Players" Margin="812,505,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78"/>
+        <Button Click="AddTeam" Content="Add Team" Margin="0,0,852,25" BorderBrush="ForestGreen" BorderThickness="3" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="74"/>
+        <Button Click="Edit"  Content="Edit Team" HorizontalAlignment="Left" Margin="132,536,0,0" Width="82" BorderBrush="Yellow" BorderThickness="3" Height="34" VerticalAlignment="Top" />
+        <Button Click="Delete" Content="Delete Team" HorizontalAlignment="Left" Margin="252,536,0,0" Width="90" BorderBrush="Red" BorderThickness="3" Height="36" VerticalAlignment="Top" />
+        <Button Click="ListPlayers" Content="List Players" Margin="812,518,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78"/>
         <Label Content="All Teams" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="207" FontSize="17"/>
         <Button Click="Refresh" Content="Refresh" Margin="824,26,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="54"/>
 

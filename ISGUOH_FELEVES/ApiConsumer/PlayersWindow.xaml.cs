@@ -20,14 +20,16 @@ namespace ApiConsumer
     public partial class PlayersWindow : Window
     {
         Team team;
+        string token;
 
         public PlayersWindow()
         {
             InitializeComponent();
         }
-        public PlayersWindow(Team team)
+        public PlayersWindow(Team team, string token)
         {
             this.team = team;
+            this.token = token;
             InitializeComponent();
             GetPlayers(team.TeamID);
         }
@@ -37,7 +39,7 @@ namespace ApiConsumer
         public async Task GetPlayers(string Team)
         {
             Playergrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", $"/Player/PlayersFromTeam/{Team}");
+            RestService restservice = new RestService("https://localhost:5001/", $"/Player/PlayersFromTeam/{Team}",token);
 
 
 
@@ -55,14 +57,14 @@ namespace ApiConsumer
 
         private void AddPlayer(object sender, RoutedEventArgs e)
         {
-            AddPlayerWindow addPlayerWindow = new AddPlayerWindow(team);
+            AddPlayerWindow addPlayerWindow = new AddPlayerWindow(team,token);
             addPlayerWindow.Show();
             this.Close();
         }
 
         private void EditPlayer(object sender, RoutedEventArgs e)
         {
-            EditPlayerWindow editwindow = new EditPlayerWindow(/*token,*/ Playergrid.SelectedItem as Player, team);
+            EditPlayerWindow editwindow = new EditPlayerWindow(Playergrid.SelectedItem as Player, team,token);
             editwindow.Show();
             this.Close();
         }
@@ -71,7 +73,7 @@ namespace ApiConsumer
         {
             if ((Playergrid.SelectedItem as Player) != null)
             {
-                RestService restservice = new RestService("https://localhost:5001/", "/Player");
+                RestService restservice = new RestService("https://localhost:5001/", "/Player",token);
                 restservice.Delete((Playergrid.SelectedItem as Player).IgazolasSzama);
             }
         }

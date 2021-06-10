@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiConsumer"
         mc:Ignorable="d"
-        Title="PlayersWindow" Height="582" Width="927">
+        Title="PlayersWindow" Height="633" Width="958">
     <Grid>
 
-        <DataGrid x:Name="Playergrid" Margin="10,77,10,110"  IsReadOnly="True"/>
-        <Button Click="AddPlayer" Content="Add Player" Margin="27,512,830,0" BorderBrush="ForestGreen" BorderThickness="3" Height="34" VerticalAlignment="Top"/>
-        <Button  Click="EditPlayer"  Content="Edit Player" HorizontalAlignment="Left" Margin="128,510,0,0" Width="82" BorderBrush="Yellow" BorderThickness="3" Height="34" VerticalAlignment="Top" />
-        <Button Click="DeletePlayer" Content="Delete Player" HorizontalAlignment="Left" Margin="235,510,0,0" Width="90" BorderBrush="Red" BorderThickness="3" Height="36" VerticalAlignment="Top" />
+        <DataGrid x:Name="Playergrid" Margin="10,77,10,0"  IsReadOnly="True" AutoGenerateColumns="False" Height="392" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Player Name" Binding="{Binding Path= PlayerName}"  />
+                <DataGridTextColumn  Header="Nationality" Binding="{Binding Path= Nationality}"  />
+                <DataGridTextColumn  Header="Rating" Binding="{Binding Path= Rating}"  />
+                <DataGridTextColumn  Header="WeakFoot" Binding="{Binding Path= WeakFoot}"  />
+                <DataGridTextColumn  Header="Team Name" Binding="{Binding Path= TeamID}"  />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="AddPlayer" Content="Add Player" Margin="23,523,0,0" BorderBrush="ForestGreen" BorderThickness="3" HorizontalAlignment="Left" Width="76" Height="32" VerticalAlignment="Top"/>
+        <Button  Click="EditPlayer"  Content="Edit Player" HorizontalAlignment="Left" Margin="131,523,0,0" Width="82" BorderBrush="Yellow" BorderThickness="3" Height="34" VerticalAlignment="Top" />
+        <Button Click="DeletePlayer" Content="Delete Player" HorizontalAlignment="Left" Margin="250,523,0,0" Width="90" BorderBrush="Red" BorderThickness="3" Height="36" VerticalAlignment="Top" />
         <Label Content="All Players" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="207" FontSize="17"/>
         <Button  Click="Refresh" Content="Refresh" Margin="824,26,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="54"/>
 

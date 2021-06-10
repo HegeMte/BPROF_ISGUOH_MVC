@@ -20,10 +20,12 @@ namespace ApiConsumer
     {
         Player player;
         Team team;
-        public EditPlayerWindow(Player player,Team team)
+        string token;
+        public EditPlayerWindow(Player player,Team team,string token)
         {
             this.team = team;
             this.player = player;
+            this.token = token;
             InitializeComponent();
             PlayerName.Text = player.PlayerName;
             PlayerRating.Value = player.Rating;
@@ -46,12 +48,12 @@ namespace ApiConsumer
 
             };
 
-            RestService restservice = new RestService("https://localhost:5001/", "/Player");
+            RestService restservice = new RestService("https://localhost:5001/", "/Player",token);
             restservice.Put<string, Player>(player.IgazolasSzama, modplayer);
 
           
 
-            PlayersWindow playersWindow = new PlayersWindow(team);
+            PlayersWindow playersWindow = new PlayersWindow(team,token);
             playersWindow.Show();
             this.Close();
         }

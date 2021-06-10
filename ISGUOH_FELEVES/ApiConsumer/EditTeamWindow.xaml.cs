@@ -19,11 +19,12 @@ namespace ApiConsumer
     public partial class EditTeamWindow : Window
     {
         Team preTeam;
+        string token;
 
-
-        public EditTeamWindow(Team team)
+        public EditTeamWindow(Team team,string token)
         {
             InitializeComponent();
+            this.token = token;
             this.preTeam = team;
             TeamName.Content = team.TeamID;
             Country.Text = team.City;
@@ -41,10 +42,10 @@ namespace ApiConsumer
                 
             };
 
-            RestService restservice = new RestService("https://localhost:5001/", "/Team");
+            RestService restservice = new RestService("https://localhost:5001/", "/Team",token);
             restservice.Put<string, Team>(preTeam.TeamID, modteam);
 
-            TeamWindow teamWindow = new TeamWindow(modteam.LeagueID);
+            TeamWindow teamWindow = new TeamWindow(modteam.LeagueID,token);
             teamWindow.Show();
             this.Close();
 

@@ -20,15 +20,17 @@ namespace ApiConsumer
     /// </summary>
     public partial class LeagueWindow : Window
     {
-        public LeagueWindow()
+        string token;
+        public LeagueWindow(string token)
         {
             InitializeComponent();
+            this.token = token;
             GetLeagues();
         }
 
         private void Addleague(object sender, RoutedEventArgs e)
         {
-            AddLeagueWindow addwindow = new AddLeagueWindow();
+            AddLeagueWindow addwindow = new AddLeagueWindow(token);
             addwindow.Show();
             
 
@@ -39,12 +41,12 @@ namespace ApiConsumer
         public async Task GetLeagues()
         {
             Leaguegrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", "/League");
+            RestService restservice = new RestService("https://localhost:5001/", "/League", token);
 
             IEnumerable<League> allleagues = await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = null;
-            restservice = new RestService("https://localhost:5001/", "/League");
+            restservice = new RestService("https://localhost:5001/", "/League", token);
             allleagues = await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = allleagues;
@@ -56,13 +58,13 @@ namespace ApiConsumer
 
             if (Leaguegrid.SelectedItem as League != null)
             {
-                RestService restService = new RestService("https://localhost:5001/", "/League");
+                RestService restService = new RestService("https://localhost:5001/", "/League", token);
                 restService.Delete<string>((Leaguegrid.SelectedItem as League).LeagueID);
 
                 Leaguegrid.ItemsSource = null;
 
                 //update
-                RestService rest = new RestService("https://localhost:5001/", "/League");
+                RestService rest = new RestService("https://localhost:5001/", "/League", token);
                 IEnumerable<League> alleagues = await rest.Get<League>();
 
                 Leaguegrid.ItemsSource = alleagues;
@@ -72,7 +74,7 @@ namespace ApiConsumer
 
         private void EditLeague(object sender, RoutedEventArgs e)
         {
-            EditLeagueWindow edit = new EditLeagueWindow(Leaguegrid.SelectedItem as League);
+            EditLeagueWindow edit = new EditLeagueWindow(Leaguegrid.SelectedItem as League, token);
             edit.Show();
             this.Close();
         }
@@ -80,12 +82,12 @@ namespace ApiConsumer
         private async void Refresh(object sender, RoutedEventArgs e)
         {
             Leaguegrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", "/League");
+            RestService restservice = new RestService("https://localhost:5001/", "/League", token);
 
             IEnumerable<League> allleagues =  await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = null;
-            restservice = new RestService("https://localhost:5001/", "/League");
+            restservice = new RestService("https://localhost:5001/", "/League", token);
             allleagues = await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = allleagues;
@@ -96,7 +98,7 @@ namespace ApiConsumer
 
         private void ListTeams(object sender, RoutedEventArgs e)
         {
-            TeamWindow tw = new TeamWindow((Leaguegrid.SelectedItem as League).LeagueID);
+            TeamWindow tw = new TeamWindow((Leaguegrid.SelectedItem as League).LeagueID,token);
             tw.Show();
             this.Close();
         }

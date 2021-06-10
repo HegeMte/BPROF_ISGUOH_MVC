@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiConsumer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="369" Width="522">
     <Grid>
+        <Label Content="MLSZ DATABASE" FontSize="20" HorizontalAlignment="Left" Margin="146,23,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label Content="User Name:" HorizontalAlignment="Left" Margin="62,119,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="62,160,0,0" VerticalAlignment="Top" Width="64"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="159,164,0,0" VerticalAlignment="Top" Width="277"/>
+        <TextBox x:Name="UserName" HorizontalAlignment="Left" Margin="159,123,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="277"/>
+        <Button Click="Login" Content="LOGIN" HorizontalAlignment="Center" Margin="0,245,0,0" VerticalAlignment="Top" Height="63" Width="416"/>
 
     </Grid>
 </Window>

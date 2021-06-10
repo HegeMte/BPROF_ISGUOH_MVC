@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiConsumer"
         mc:Ignorable="d"
-        Title="LeagueWindow" Height="584" Width="902">
+        Title="LeagueWindow" Height="603" Width="926">
     <Grid>
-        <DataGrid x:Name="Leaguegrid" Margin="10,77,10,110"  IsReadOnly="True"/>
+        <DataGrid x:Name="Leaguegrid" Margin="10,77,10,0"  IsReadOnly="True" AutoGenerateColumns="False" Height="363" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="League Name" Binding="{Binding Path= LeagueID}"  />
+                <DataGridTextColumn  Header="Country" Binding="{Binding Path= Country}"  />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Click="Addleague" Content="Add League" HorizontalAlignment="Left" Margin="26,510,0,0" VerticalAlignment="Top" Height="32" Width="77" BorderBrush="ForestGreen" BorderThickness="3"/>
         <Button Click="EditLeague" Content="Edit League" HorizontalAlignment="Left" Margin="128,510,0,0" VerticalAlignment="Top" Height="32" Width="82" BorderBrush="Yellow" BorderThickness="3" />
         <Button Click="DeleteLeague" Content="Delete League" HorizontalAlignment="Left" Margin="235,510,0,0" VerticalAlignment="Top" Height="32" Width="90" BorderBrush="Red" BorderThickness="3" />

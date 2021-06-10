@@ -19,24 +19,26 @@ namespace ApiConsumer
     public partial class EditLeagueWindow : Window
     {
         League l;
-        public EditLeagueWindow(League l)
+        string token;
+        public EditLeagueWindow(League l,string token)
         {
             InitializeComponent();
             this.l = l;
             Country.Text = l.Country;
             LeagueName.Content = l.LeagueID;
+            this.token = token;
         }
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            RestService restService = new RestService("https://localhost:5001/", "/League");
+            RestService restService = new RestService("https://localhost:5001/", "/League", token);
 
 
             League league = new League() { Country = Country.Text, LeagueID = LeagueName.Content.ToString() };
 
             restService.Put<string, League>(l.LeagueID, league);
 
-            LeagueWindow leagueWindow = new LeagueWindow();
+            LeagueWindow leagueWindow = new LeagueWindow(token);
             leagueWindow.Show();
             this.Close();
 

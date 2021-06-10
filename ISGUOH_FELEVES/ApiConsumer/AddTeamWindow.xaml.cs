@@ -19,8 +19,10 @@ namespace ApiConsumer
     public partial class AddTeamWindow : Window
     {
         private string leagueid;
-        public AddTeamWindow(string leagueid)
+        string token;
+        public AddTeamWindow(string leagueid,string token)
         {
+            this.token = token;
             this.leagueid = leagueid;
             InitializeComponent();
         }
@@ -34,10 +36,10 @@ namespace ApiConsumer
                 LeagueID = leagueid.ToString()
             };
 
-            RestService restService = new RestService("https://localhost:5001/", "/Team");
+            RestService restService = new RestService("https://localhost:5001/", "/Team",token);
             restService.Post<Team>(team);
 
-            TeamWindow teamWindow = new TeamWindow(leagueid);
+            TeamWindow teamWindow = new TeamWindow(leagueid,token);
             teamWindow.Show();
             this.Close();
         }

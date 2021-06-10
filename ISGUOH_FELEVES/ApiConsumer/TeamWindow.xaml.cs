@@ -20,6 +20,7 @@ namespace ApiConsumer
     public partial class TeamWindow : Window
     {
         string League;
+        string token;
         public TeamWindow()
         {
             InitializeComponent();
@@ -29,8 +30,9 @@ namespace ApiConsumer
 
        
 
-        public TeamWindow(string LeagueID)
+        public TeamWindow(string LeagueID,string token)
         {
+            this.token = token;
             this.League = LeagueID;
             InitializeComponent();
             GetTeams(LeagueID);
@@ -41,7 +43,7 @@ namespace ApiConsumer
 
         private void AddTeam(object sender, RoutedEventArgs e)
         {
-            AddTeamWindow addteamwindow = new AddTeamWindow(League);
+            AddTeamWindow addteamwindow = new AddTeamWindow(League,token);
             addteamwindow.Show();
             this.Close();
         }
@@ -50,7 +52,7 @@ namespace ApiConsumer
         public async Task GetTeams(string League)
         {
             Teamgrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", $"/Team/GetAllTeamFromLeague/{League}");
+            RestService restservice = new RestService("https://localhost:5001/", $"/Team/GetAllTeamFromLeague/{League}",token);
 
 
 
@@ -68,7 +70,7 @@ namespace ApiConsumer
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            EditTeamWindow editwindow = new EditTeamWindow(/*token,*/ Teamgrid.SelectedItem as Team);
+            EditTeamWindow editwindow = new EditTeamWindow(Teamgrid.SelectedItem as Team, token );
             editwindow.Show();
             this.Close();
         }
@@ -77,7 +79,7 @@ namespace ApiConsumer
         {
             if ((Teamgrid.SelectedItem as Team) != null)
             {
-                RestService restservice = new RestService("https://localhost:5001/", "/Team");
+                RestService restservice = new RestService("https://localhost:5001/", "/Team",token);
                 restservice.Delete((Teamgrid.SelectedItem as Team).TeamID);
             }
             
@@ -85,7 +87,7 @@ namespace ApiConsumer
 
         private void ListPlayers(object sender, RoutedEventArgs e)
         {
-            PlayersWindow playersWindow = new PlayersWindow(Teamgrid.SelectedItem as Team /*,token*/);
+            PlayersWindow playersWindow = new PlayersWindow(Teamgrid.SelectedItem as Team,token);
             playersWindow.Show();
             this.Close();
 
