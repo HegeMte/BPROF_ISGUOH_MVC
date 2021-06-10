@@ -31,7 +31,7 @@ namespace ApiConsumer
 
         private async void Login(object sender, RoutedEventArgs e)
         {
-            RestService restservice = new RestService("https://localhost:5001/", "/Auth");
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/Auth");
 
             TokenViewModel tokenviewmodel = await restservice.Put<TokenViewModel, LoginViewModel>(
             new LoginViewModel()

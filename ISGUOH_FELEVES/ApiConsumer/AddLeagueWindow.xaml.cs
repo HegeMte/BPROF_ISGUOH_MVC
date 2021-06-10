@@ -37,7 +37,7 @@ namespace ApiConsumer
             };
 
 
-            RestService restservice = new RestService("https://localhost:5001/", "/League", token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
             restservice.Post<League>(league);
 
             LeagueWindow lwindow = new LeagueWindow(token);

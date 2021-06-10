@@ -39,7 +39,7 @@ namespace ApiConsumer
         public async Task GetPlayers(string Team)
         {
             Playergrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", $"/Player/PlayersFromTeam/{Team}",token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", $"/Player/PlayersFromTeam/{Team}",token);
 
 
 
@@ -73,7 +73,7 @@ namespace ApiConsumer
         {
             if ((Playergrid.SelectedItem as Player) != null)
             {
-                RestService restservice = new RestService("https://localhost:5001/", "/Player",token);
+                RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/Player",token);
                 restservice.Delete((Playergrid.SelectedItem as Player).IgazolasSzama);
             }
         }

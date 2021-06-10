@@ -31,7 +31,7 @@ namespace ApiConsumer
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            RestService restService = new RestService("https://localhost:5001/", "/League", token);
+            RestService restService = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
 
 
             League league = new League() { Country = Country.Text, LeagueID = LeagueName.Content.ToString() };

@@ -52,7 +52,7 @@ namespace ApiConsumer
         public async Task GetTeams(string League)
         {
             Teamgrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", $"/Team/GetAllTeamFromLeague/{League}",token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", $"/Team/GetAllTeamFromLeague/{League}",token);
 
 
 
@@ -79,7 +79,7 @@ namespace ApiConsumer
         {
             if ((Teamgrid.SelectedItem as Team) != null)
             {
-                RestService restservice = new RestService("https://localhost:5001/", "/Team",token);
+                RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/Team",token);
                 restservice.Delete((Teamgrid.SelectedItem as Team).TeamID);
             }
             

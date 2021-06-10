@@ -42,7 +42,7 @@ namespace ApiConsumer
                 
             };
 
-            RestService restservice = new RestService("https://localhost:5001/", "/Team",token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/Team",token);
             restservice.Put<string, Team>(preTeam.TeamID, modteam);
 
             TeamWindow teamWindow = new TeamWindow(modteam.LeagueID,token);

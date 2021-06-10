@@ -41,12 +41,12 @@ namespace ApiConsumer
         public async Task GetLeagues()
         {
             Leaguegrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", "/League", token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
 
             IEnumerable<League> allleagues = await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = null;
-            restservice = new RestService("https://localhost:5001/", "/League", token);
+            restservice = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
             allleagues = await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = allleagues;
@@ -58,13 +58,13 @@ namespace ApiConsumer
 
             if (Leaguegrid.SelectedItem as League != null)
             {
-                RestService restService = new RestService("https://localhost:5001/", "/League", token);
+                RestService restService = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
                 restService.Delete<string>((Leaguegrid.SelectedItem as League).LeagueID);
 
                 Leaguegrid.ItemsSource = null;
 
                 //update
-                RestService rest = new RestService("https://localhost:5001/", "/League", token);
+                RestService rest = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
                 IEnumerable<League> alleagues = await rest.Get<League>();
 
                 Leaguegrid.ItemsSource = alleagues;
@@ -82,12 +82,12 @@ namespace ApiConsumer
         private async void Refresh(object sender, RoutedEventArgs e)
         {
             Leaguegrid.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", "/League", token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
 
             IEnumerable<League> allleagues =  await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = null;
-            restservice = new RestService("https://localhost:5001/", "/League", token);
+            restservice = new RestService("https://mlszproject.azurewebsites.net/", "/League", token);
             allleagues = await restservice.Get<League>();
 
             Leaguegrid.ItemsSource = allleagues;

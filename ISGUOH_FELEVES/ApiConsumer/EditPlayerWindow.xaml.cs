@@ -48,7 +48,7 @@ namespace ApiConsumer
 
             };
 
-            RestService restservice = new RestService("https://localhost:5001/", "/Player",token);
+            RestService restservice = new RestService("https://mlszproject.azurewebsites.net/", "/Player",token);
             restservice.Put<string, Player>(player.IgazolasSzama, modplayer);
 
           
