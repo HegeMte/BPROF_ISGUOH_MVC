@@ -21,6 +21,7 @@
         <Button Click="ListPlayers" Content="List Players" Margin="812,518,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78"/>
         <Label Content="All Teams" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="207" FontSize="17"/>
         <Button Click="Refresh" Content="Refresh" Margin="824,26,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="54"/>
+        <Button Click="BackToMenu" Content="Back to Menu" HorizontalAlignment="Left" Margin="26,27,0,0" VerticalAlignment="Top" Height="23" Width="77"/>
 
 
 

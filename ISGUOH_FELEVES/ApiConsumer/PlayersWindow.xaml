@@ -22,6 +22,7 @@
         <Button Click="DeletePlayer" Content="Delete Player" HorizontalAlignment="Left" Margin="250,523,0,0" Width="90" BorderBrush="Red" BorderThickness="3" Height="36" VerticalAlignment="Top" />
         <Label Content="All Players" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="207" FontSize="17"/>
         <Button  Click="Refresh" Content="Refresh" Margin="824,26,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="54"/>
+        <Button Click="BackToMenu" Content="Back To Menu" HorizontalAlignment="Left" Margin="23,26,0,0" VerticalAlignment="Top" Height="33" Width="89"/>
 
 
 

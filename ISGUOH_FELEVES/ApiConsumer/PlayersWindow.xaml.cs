@@ -77,5 +77,12 @@ namespace ApiConsumer
                 restservice.Delete((Playergrid.SelectedItem as Player).IgazolasSzama);
             }
         }
+
+        private void BackToMenu(object sender, RoutedEventArgs e)
+        {
+            LeagueWindow win = new LeagueWindow(token);
+            win.Show();
+            this.Close();
+        }
     }
 }
