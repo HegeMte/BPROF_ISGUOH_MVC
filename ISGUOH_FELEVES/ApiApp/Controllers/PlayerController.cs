@@ -53,7 +53,7 @@ namespace ApiApp.Controllers
         }
 
 
-        [HttpGet("/PlayersFromTeam/{teamid}")]
+        [HttpGet("PlayersFromTeam/{teamid}")]
         public IEnumerable<Player> GetPlayersFromTeam(string teamid)
         {
 

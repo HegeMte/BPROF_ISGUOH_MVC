@@ -8,6 +8,7 @@ namespace Models
     public class Player
     {
 
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             [Key]
             public string IgazolasSzama { get; set; }
 

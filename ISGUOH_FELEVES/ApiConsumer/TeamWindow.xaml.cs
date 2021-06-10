@@ -65,5 +65,32 @@ namespace ApiConsumer
         {
             GetTeams(League);
         }
+
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            EditTeamWindow editwindow = new EditTeamWindow(/*token,*/ Teamgrid.SelectedItem as Team);
+            editwindow.Show();
+            this.Close();
+        }
+
+        private async void Delete(object sender, RoutedEventArgs e)
+        {
+            if ((Teamgrid.SelectedItem as Team) != null)
+            {
+                RestService restservice = new RestService("https://localhost:5001/", "/Team");
+                restservice.Delete((Teamgrid.SelectedItem as Team).TeamID);
+            }
+            
+        }
+
+        private void ListPlayers(object sender, RoutedEventArgs e)
+        {
+            PlayersWindow playersWindow = new PlayersWindow(Teamgrid.SelectedItem as Team /*,token*/);
+            playersWindow.Show();
+            this.Close();
+
+
+
+        }
     }
 }
